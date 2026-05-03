@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PostFlow — AI Social Content for Small Businesses</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #09090b; color: #fafafa; overflow-x: hidden; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); position: sticky; top: 0; background: rgba(9,9,11,0.92); z-index: 100; }
+  .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+  .logo span { color: #6ee7b7; }
+  .nav-links a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; margin-left: 2rem; }
+  .nav-cta { background: #6ee7b7 !important; color: #09090b !important; padding: 8px 18px; border-radius: 100px; font-weight: 500; }
+  .hero { padding: 7rem 3rem 5rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(110,231,183,0.1); border: 1px solid rgba(110,231,183,0.3); color: #6ee7b7; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .badge-dot { width: 6px; height: 6px; background: #6ee7b7; border-radius: 50%; }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -2px; margin-bottom: 1.5rem; color: #fff; }
+  h1 em { font-style: normal; color: #6ee7b7; }
+  .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 560px; margin: 0 auto 2.5rem; }
+  .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .btn-primary { background: #6ee7b7; color: #09090b; font-family: inherit; font-size: 15px; font-weight: 600; padding: 14px 28px; border-radius: 100px; border: none; cursor: pointer; }
+  .btn-secondary { background: transparent; color: #fff; font-family: inherit; font-size: 15px; padding: 14px 28px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; }
+  .social-proof { display: flex; justify-content: center; align-items: center; gap: 1rem; font-size: 13px; color: rgba(255,255,255,0.35); }
+  .avatars { display: flex; }
+  .avatar { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #09090b; margin-left: -8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+  .avatar:first-child { margin-left: 0; background: #6ee7b7; color: #09090b; }
+  .avatar:nth-child(2) { background: #8b5cf6; color: #fff; }
+  .avatar:nth-child(3) { background: #f59e0b; color: #09090b; }
+  .avatar:nth-child(4) { background: #374151; color: #fff; font-size: 9px; }
+  .preview { margin: 3rem auto; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 2rem; max-width: 860px; }
+  .preview-dots { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .post-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem; }
+  .post-tag { font-size: 10px; font-weight: 600; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+  .post-text { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 0.75rem; }
+  .post-pills { display: flex; gap: 6px; }
+  .pill { font-size: 10px; background: rgba(110,231,183,0.08); color: #6ee7b7; padding: 3px 8px; border-radius: 100px; border: 1px solid rgba(110,231,183,0.2); }
+  .features { padding: 5rem 3rem; max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 12px; color: #6ee7b7; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 1rem; }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 3rem; color: #fff; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .feature { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 1.5rem; }
+  .feature-icon { width: 36px; height: 36px; background: rgba(110,231,183,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 18px; }
+  .feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+  .feature p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .pricing { padding: 5rem 3rem; max-width: 480px; margin: 0 auto; text-align: center; }
+  .price-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(110,231,183,0.3); border-radius: 24px; padding: 2.5rem; margin-top: 2.5rem; }
+  .price-amount { font-size: 4rem; font-weight: 800; letter-spacing: -2px; color: #fff; }
+  .price-amount sup { font-size: 1.5rem; color: rgba(255,255,255,0.4); font-weight: 300; vertical-align: super; }
+  .price-period { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 2rem; }
+  .price-list { text-align: left; margin-bottom: 2rem; }
+  .price-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.7); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .price-item:last-child { border-bottom: none; }
+  .check { width: 18px; height: 18px; background: rgba(110,231,183,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #6ee7b7; font-size: 11px; font-weight: 700; }
+  .faq { padding: 4rem 3rem 6rem; max-width: 640px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); padding: 1.25rem 0; }
+  .faq-q { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 0.6rem; }
+  .faq-a { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+  footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .footer-logo span { color: #6ee7b7; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
+  @media(max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .preview-grid { grid-template-columns: 1fr; }
+    .features { padding: 3rem 1.5rem; }
+    .pricing { padding: 3rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Post<span>Flow</span></div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#pricing" class="nav-cta">Start free</a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="badge"><div class="badge-dot"></div> AI-powered content, on autopilot</div>
+  <h1>30 days of social content.<br><em>Done in 60 seconds.</em></h1>
+  <p class="subtitle">PostFlow generates a full month of ready-to-post captions for your business. No writers. No agency. Just results — every single month.</p>
+  <div class="cta-group">
+    <button class="btn-primary" onclick="alert('Connect your Stripe link here!')">Get your first month free</button>
+    <button class="btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">See how it works</button>
+  </div>
+  <div class="social-proof">
+    <div class="avatars">
+      <div class="avatar">JR</div>
+      <div class="avatar">KL</div>
+      <div class="avatar">MS</div>
+      <div class="avatar">+40</div>
+    </div>
+    <span>Trusted by 40+ small businesses this month</span>
+  </div>
+</section>
+<div class="preview">
+  <div class="preview-dots">
+    <div class="dot" style="background:#ef4444"></div>
+    <div class="dot" style="background:#f59e0b"></div>
+    <div class="dot" style="background:#22c55e"></div>
+  </div>
+  <div class="preview-grid">
+    <div class="post-card">
+      <div class="post-tag">Monday · Instagram</div>
+      <div class="post-text">Behind every great haircut is a stylist who actually listens. Book your next appointment and leave feeling like yourself again.</div>
+      <div class="post-pills"><div class="pill">Caption</div><div class="pill">Hashtags</div></div>
+    </div>
+    <div class="post-card">
+      <div class="post-tag">Wednesday · Facebook</div>
+      <div class="post-text">We've been serving our community for 8 years. Same quality. Same care. New spring menu just dropped — come see what we're excited about.</div>
+      <div class="post-pills"><div class="pill">Caption</div><div class="pill">Hashtags</div></div>
+    </div>
+    <div class="post-card">
+      <div class="post-tag">Friday · Instagram</div>
+      <div class="post-text">Your weekend plans just got better. Swing by, grab your usual, and let us handle the rest. We'll be here.</div>
+      <div class="post-pills"><div class="pill">Caption</div><div class="pill">Hashtags</div></div>
+    </div>
+  </div>
+</div>
+<section class="features" id="features">
+  <div class="section-label">Why PostFlow</div>
+  <div class="section-title">Everything runs without you.</div>
+  <div class="features-grid">
+    <div class="feature"><div class="feature-icon">⚡</div><h3>30 posts generated instantly</h3><p>Answer 5 questions about your business. Get a full month of content in under a minute.</p></div>
+    <div class="feature"><div class="feature-icon">🔄</div><h3>Auto-refreshes every month</h3><p>New content generated automatically. You never have to log in unless you want to.</p></div>
+    <div class="feature"><div class="feature-icon">🎯</div><h3>Written for your voice</h3><p>Casual, professional, or fun — the AI learns your tone and stays consistent every time.</p></div>
+    <div class="feature"><div class="feature-icon">💬</div><h3>AI customer support</h3><p>A chatbot handles every question from your customers. No inbox needed.</p></div>
+    <div class="feature"><div class="feature-icon">💳</div><h3>Billing on autopilot</h3><p>Stripe handles every payment, refund, and subscription automatically.</p></div>
+    <div class="feature"><div class="feature-icon">📈</div><h3>See what's working</h3><p>Simple monthly report shows which content types get the most engagement.</p></div>
+  </div>
+</section>
+<section class="pricing" id="pricing">
+  <div class="section-label">Simple pricing</div>
+  <div class="section-title">One plan. No surprises.</div>
+  <div class="price-card">
+    <div class="price-amount"><sup>$</sup>39</div>
+    <div class="price-period">per month &middot; cancel anytime</div>
+    <div class="price-list">
+      <div class="price-item"><div class="check">✓</div> 30 AI-written posts every month</div>
+      <div class="price-item"><div class="check">✓</div> Captions + hashtags included</div>
+      <div class="price-item"><div class="check">✓</div> Auto-refresh every 30 days</div>
+      <div class="price-item"><div class="check">✓</div> Instagram, Facebook and LinkedIn</div>
+      <div class="price-item"><div class="check">✓</div> AI chatbot for customer questions</div>
+      <div class="price-item"><div class="check">✓</div> First month completely free</div>
+    </div>
+    <button class="btn-primary" style="width:100%; padding:16px; font-size:16px;" onclick="alert('Connect your Stripe link here!')">Start my free month</button>
+  </div>
+</section>
+<section class="faq">
+  <div class="section-label">FAQ</div>
+  <div class="section-title" style="margin-bottom:2rem;">Got questions?</div>
+  <div class="faq-item"><div class="faq-q">Do I need any technical skills?</div><div class="faq-a">None at all. You answer 5 simple questions about your business and we handle everything else automatically.</div></div>
+  <div class="faq-item"><div class="faq-q">What kinds of businesses does this work for?</div><div class="faq-a">Any local or online small business — salons, gyms, cafes, contractors, coaches, boutiques, and more.</div></div>
+  <div class="faq-item"><div class="faq-q">Can I edit the posts before I publish?</div><div class="faq-a">Yes. Every post is delivered to your email and you can tweak anything you want before posting.</div></div>
+  <div class="faq-item"><div class="faq-q">What happens after the free month?</div><div class="faq-a">You are automatically charged $39 per month. Cancel any time — no questions asked.</div></div>
+</section>
+<footer>
+  <div class="footer-logo">Post<span>Flow</span></div>
+  <p>&copy; 2026 PostFlow. Built to run without you.</p>
+</footer>
+</body>
+</html>
